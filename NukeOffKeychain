@@ -22,14 +22,18 @@ OUTLOOK2016PATH="/Applications/Microsoft Outlook.app"
 ONENOTE2016PATH="/Applications/Microsoft OneNote.app"
 SCRIPTPATH=$( cd $(dirname $0) ; pwd -P )
 
-function ShowUsage {
-# Shows tool usage and parameters
-	echo $TOOL_NAME - $TOOL_VERSION
-	echo "Purpose: Removes Office 2016 for Mac keychain entries"
-	echo "Usage: NukeOffKey [--All] [--Force]"
-	echo
-	exit 0
-}
+# Force command line arguments
+REMOVEALL=true
+FORCE=true
+
+# function ShowUsage {
+# # Shows tool usage and parameters
+# 	echo $TOOL_NAME - $TOOL_VERSION
+# 	echo "Purpose: Removes Office 2016 for Mac keychain entries"
+# 	echo "Usage: NukeOffKey [--All] [--Force]"
+# 	echo
+# 	exit 0
+# }
 
 # Check that all keychain-integrated applications are not running
 function CheckRunning {
@@ -148,33 +152,33 @@ function RemoveEntryOfficeIdSettings2 {
 }
 
 
-# Evaluate command-line arguments
-if [[ $# = 0 ]]; then
-	ShowUsage
-else
-	for KEY in "$@"
-	do
-	case $KEY in
-    	--Help|-h|--help)
-    	ShowUsage
-    	shift # past argument
-    	;;
-    	--All|-a|--all)
-    	REMOVEALL=true
-    	shift # past argument
-		;;
-		--Force|-f|--force)
-		REMOVEALL=true
-    	FORCE=true
-    	shift # past argument
-		;;
-		*)
-    	ShowUsage
-    	;;
-    esac
-	shift # past argument or value
-	done
-fi
+# # Evaluate command-line arguments
+# if [[ $# = 0 ]]; then
+# 	ShowUsage
+# else
+# 	for KEY in "$@"
+# 	do
+# 	case $KEY in
+#     	--Help|-h|--help)
+#     	ShowUsage
+#     	shift # past argument
+#     	;;
+#     	--All|-a|--all)
+#     	REMOVEALL=true
+#     	shift # past argument
+# 		;;
+# 		--Force|-f|--force)
+# 		REMOVEALL=true
+#     	FORCE=true
+#     	shift # past argument
+# 		;;
+# 		*)
+#     	ShowUsage
+#     	;;
+#     esac
+# 	shift # past argument or value
+# 	done
+# fi
 
 ## Main
 # Start Removal Routine
